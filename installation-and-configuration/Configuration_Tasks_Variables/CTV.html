@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Configuration Tasks &mdash; Nauta 1.1 documentation</title>
+  <title>Configuration File Tasks &mdash; Nauta 1.1 documentation</title>
   
 
   
@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#document-flow">Document Flow</a></li>
 </ul>
 
             
@@ -135,7 +136,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Configuration Tasks</li>
+      <li>Configuration File Tasks</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -154,14 +155,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configuration-tasks">
-<h1>Configuration Tasks<a class="headerlink" href="#configuration-tasks" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="configuration-file-tasks">
+<h1>Configuration File Tasks<a class="headerlink" href="#configuration-file-tasks" title="Permalink to this headline">¶</a></h1>
 <p>This section discusses the following main topics:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#configuration-overview">Configuration Overview</a></p></li>
 <li><p><a class="reference external" href="#configuration-considerations">Configuration Considerations</a></p></li>
 <li><p><a class="reference external" href="#example-configuration-file">Example Configuration File</a></p></li>
-<li><p><a class="reference external" href="#yaml-file-example">YAML File Example</a></p></li>
+<li><p><a class="reference external" href="#yaml-configuration-file-example">YAML Configuration File Example</a></p></li>
 <li><p><a class="reference external" href="#default-value-of-an-empty-dictionary">Default Value of an Empty Dictionary</a></p></li>
 <li><p><a class="reference external" href="#deciding-to-leave-the-proxy-parameter-empty">Deciding to Leave the Proxy Parameter Empty</a></p></li>
 <li><p><a class="reference external" href="#docker-log-driver-settings">Docker Log Driver Settings</a></p></li>
@@ -171,10 +172,10 @@
 </ul>
 <div class="section" id="configuration-overview">
 <h2>Configuration Overview<a class="headerlink" href="#configuration-overview" title="Permalink to this headline">¶</a></h2>
-<p>Nauta’s configuration is specified by a <em>YAML Configuration file</em>. Nauta will look for this file at the location defined in the <code class="docutils literal notranslate"><span class="pre">ENV_CONFIG</span></code> environment variable (explained in <a class="reference internal" href="../Installation_Process/IP.html"><span class="doc">Installation Process</span></a> as well as shown example configuration file is also shown below). This configuration file specifies network proxies, DNS server locations, and other Nauta related parameters listed below. For Inventory file information, refer to <a class="reference internal" href="../Inventory_Tasks/IT.html"><span class="doc">Inventory File Example</span></a> for more information.</p>
+<p>Nauta’s configuration is specified by a <em>YAML Configuration file</em>. Nauta looks for this file at the location defined in the <code class="docutils literal notranslate"><span class="pre">ENV_CONFIG</span></code> environment variable (explained in the <a class="reference internal" href="../Installation_Process/IP.html"><span class="doc">Installation Process</span></a>, and in the example configuration file shown in the example configuration file below). This configuration file specifies network proxies, DNS server locations, and other Nauta related parameters listed below. For Inventory file information, refer to <a class="reference internal" href="../Inventory_Tasks/IT.html"><span class="doc">Inventory File Example</span></a> for more information.</p>
 <div class="section" id="parameter-color-indicators">
 <h3>Parameter Color Indicators<a class="headerlink" href="#parameter-color-indicators" title="Permalink to this headline">¶</a></h3>
-<p>In the examples shown, Green indicates a parameter name, and Blue indicates an example parameter value.</p>
+<p>In the examples shown, <em>Green</em> indicates a parameter name, and <em>Blue</em> indicates an example parameter value.</p>
 </div>
 <div class="section" id="configuration-variables-indicators">
 <h3>Configuration Variables Indicators<a class="headerlink" href="#configuration-variables-indicators" title="Permalink to this headline">¶</a></h3>
@@ -185,25 +186,25 @@
 <h2>Configuration Considerations<a class="headerlink" href="#configuration-considerations" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="host-name-considerations">
 <h3>Host Name Considerations<a class="headerlink" href="#host-name-considerations" title="Permalink to this headline">¶</a></h3>
-<p>Host names <em>must</em> conform to standard host naming rules and each element of the hostname <em>must</em> be from 1 to 63 characters long. The entire host name, including the dots <em>must not</em> exceed 253 characters long. Valid characters for host and domain names are ASCII(7) letters from a to z (lowercase), the digits from 0 to 9, and a hyphen. Furthermore, <em>do not</em> start a host and domain names with a hyphen.</p>
+<p>Host names <em>must</em> conform to standard host naming rules and each element of the hostname <em>must</em> be from 1 to 63 characters long. The entire host name, including the dots <em>must not</em> exceed 253 characters long. Valid characters for host and domain names are ASCII(7) letters from a to z (lowercase), the digits from 0 to 9, and a hyphen. Furthermore, <strong><em>do not</em></strong> start a host and domain names with a <strong><em>hyphen</em></strong>.</p>
 </div>
 <div class="section" id="proxy-value-settings">
 <h3>Proxy Value Settings<a class="headerlink" href="#proxy-value-settings" title="Permalink to this headline">¶</a></h3>
-<p>All parameters present in the configuration file <em>must</em> have values. For example: <code class="docutils literal notranslate"><span class="pre">proxy:</span></code>. Setting the configuration file with no value causes errors.</p>
+<p>All parameters present in the configuration file <em>must</em> have values. Setting the configuration file with no value causes errors, for example, <code class="docutils literal notranslate"><span class="pre">proxy:</span></code>.</p>
 </div>
 </div>
 <div class="section" id="example-configuration-file">
 <h2>Example Configuration File<a class="headerlink" href="#example-configuration-file" title="Permalink to this headline">¶</a></h2>
-<p>This is an <em>example</em> file, containing dummy values for a few of the supported configuration values. For a complete list, refer to the section after the YAML file example below. For YAML file information, refer to <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML Format Overview</a>.</p>
+<p>This is an <em>example</em> file, containing dummy values for a few of the supported configuration values. For a complete list, refer to the section after the YAML file example below (<a class="reference external" href="#yaml-configuration-file-example">YAML File Example</a>). For YAML file information, refer to <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">YAML Format Overview</a>.</p>
 <ol class="simple">
-<li><p>In the YAML file, the <em>list of items</em> is a sequence of elements starting on a new line with a dash at the beginning. For example, an empty list: []. In an abbreviated form, elements can also be enclosed on a single line.</p></li>
-<li><p>In the YAML file, a dictionary is a sequence of pairs for the element’s <em>key: value</em>. It can also be presented with each pair on a new line or abbreviated on a single line.</p></li>
+<li><p>In the YAML file, the <em>list of items</em> is a sequence of elements starting in a new line with a dash at the beginning. For example, an empty list: []. In an abbreviated form, elements can also be enclosed in a single line.</p></li>
+<li><p>In the YAML file, a dictionary is a sequence of pairs for the element’s <em>key: value</em>. It can also be presented with each pair in a new line or abbreviated in a single line.</p></li>
 </ol>
 </div>
-<div class="section" id="yaml-file-example">
-<h2>YAML File Example<a class="headerlink" href="#yaml-file-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="yaml-configuration-file-example">
+<h2>YAML Configuration File Example<a class="headerlink" href="#yaml-configuration-file-example" title="Permalink to this headline">¶</a></h2>
 <p>Below is an example YAML file that provides examples of proxy settings, DNS server settings, Kubernetes, and so on.
-If you are unsure how to do this, see the example  <a class="reference internal" href="../Inventory_Tasks/IT.html"><span class="doc">Inventory File Example</span></a> and <a class="reference internal" href="#"><span class="doc">Configuration File Example</span></a> and refer to the <a class="reference internal" href="../Installation_Process/IP.html"><span class="doc">Installation Process</span></a>.</p>
+For detailed instructions on how to complete this, see the example  <a class="reference internal" href="../Inventory_Tasks/IT.html"><span class="doc">Inventory File Example</span></a> and refer to the <a class="reference internal" href="#"><span class="doc">Configuration File Example</span></a> and refer to the <a class="reference internal" href="../Installation_Process/IP.html"><span class="doc">Installation Process</span></a>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proxy Settings</span>
 <span class="nt">proxy</span><span class="p">:</span>
   <span class="nt">http_proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">http://&lt;your proxy address and port&gt;</span>
@@ -212,7 +213,6 @@ If you are unsure how to do this, see the example  <a class="reference internal"
   <span class="nt">no_proxy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;localhost, any other addresses&gt;, 10.0.0.1,localhost,.nauta</span>
 
 <span class="c1"># This is a list of DNS servers used for resolution: a maximum of three entries.</span>
-
 <span class="nt">dns_servers</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">8.8.4.4</span>
@@ -222,18 +222,18 @@ If you are unsure how to do this, see the example  <a class="reference internal"
 <span class="nt">dns_search_domains</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">example.com</span>
 
-<span class="c1"># This is place to define additional domain names for cluster to allow secure communication</span>
+<span class="c1"># This is place to define additional domain names for cluster to allow secure communication.</span>
 <span class="nt">dns_names_for_certificate</span><span class="p">:</span>
   <span class="nt">DNS.7</span><span class="p">:</span> <span class="s">&quot;mycluster1.domain.name&quot;</span>
   <span class="nt">DNS.8</span><span class="p">:</span> <span class="s">&quot;mycluster2.domain.name&quot;</span>
 
-<span class="c1"># This is the _Internal_ domain name.</span>
+<span class="c1"># This is the Internal domain name.</span>
 <span class="nt">domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nauta</span>
 
-<span class="c1"># Internal subdomain for infrastructure</span>
+<span class="c1"># Internal subdomain for infrastructure.</span>
 <span class="nt">nodes_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lab007</span>
 
-<span class="c1"># This is the _Internal Subdomain_ for Kubernetes resources.</span>
+<span class="c1"># This is the Internal Subdomain for Kubernetes resources.</span>
 <span class="nt">k8s_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes</span>
 
 <span class="c1"># This is the Network Range for Kubernetes pods.</span>
@@ -246,10 +246,10 @@ If you are unsure how to do this, see the example  <a class="reference internal"
 </div>
 <div class="section" id="default-value-of-an-empty-dictionary">
 <h2>Default Value of an Empty Dictionary<a class="headerlink" href="#default-value-of-an-empty-dictionary" title="Permalink to this headline">¶</a></h2>
-<p>For empty dictionaries, there are 2 defaults:</p>
+<p>For empty dictionaries, there are two defaults:</p>
 <ol class="simple">
-<li><p>If a parameter <em>is not</em> included in configuration file, the default value will be utilized.</p></li>
-<li><p>If a parameter is present in configuration file with a default  value included, it appears as shown below.</p></li>
+<li><p>If a parameter <em>is not</em> included in the configuration file, the default value is utilized.</p></li>
+<li><p>If a parameter is present in the configuration file with a default  value included, it appears as shown below.</p></li>
 </ol>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">proxy:</span> <span class="pre">{}</span></code></p></li>
@@ -257,9 +257,9 @@ If you are unsure how to do this, see the example  <a class="reference internal"
 </div>
 <div class="section" id="deciding-to-leave-the-proxy-parameter-empty">
 <h2>Deciding to Leave the Proxy Parameter Empty<a class="headerlink" href="#deciding-to-leave-the-proxy-parameter-empty" title="Permalink to this headline">¶</a></h2>
-<p>There may be reasons to leave the proxy parameter set with an empty dictionary and should you decide to do this, it may be for the following reasons:</p>
+<p>There may be reasons to leave the proxy parameter set with an empty dictionary. Should you decide to do this, it may be for the following reasons:</p>
 <ul class="simple">
-<li><p>When you <em>do not</em> need a proxy because you <em>do not</em> have one in your network.</p></li>
+<li><p>You <em>do not</em> need a proxy because you <em>do not</em> have one in your network.</p></li>
 <li><p>You intentionally <em>do not</em> want to use a proxy to connect your cluster as an external network to keep it isolated from the Internet.</p></li>
 </ul>
 </div>
@@ -300,8 +300,8 @@ If you are unsure how to do this, see the example  <a class="reference internal"
 <h3>dns_names_for_certificate<a class="headerlink" href="#dns-names-for-certificate" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Description:</strong> This is a list of DNS names of the cluster.
-Values from this parameter will be acceptable addresses to access cluster in secure way.
-Key values have to be in format <code class="docutils literal notranslate"><span class="pre">DNS.X</span></code> where <code class="docutils literal notranslate"><span class="pre">X</span></code> is number greater than 6 (internally allocated symbolic addresses).</p></li>
+The values from this parameter use acceptable addresses when accessing a cluster in securely.
+Key values have to be in the format <code class="docutils literal notranslate"><span class="pre">DNS.X</span></code> where <code class="docutils literal notranslate"><span class="pre">X</span></code> is a number greater than 6 (internally allocated symbolic addresses).</p></li>
 <li><p><strong>Default value:</strong> []</p></li>
 </ul>
 </div>
@@ -329,7 +329,7 @@ Key values have to be in format <code class="docutils literal notranslate"><span
 <div class="section" id="nodes-domain">
 <h3>nodes_domain<a class="headerlink" href="#nodes-domain" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> Internal subdomain for infrastructure. Full domain for an infrastructure is:</p></li>
+<li><p><strong>Description:</strong> This is the Internal subdomain for infrastructure. Full domain for an infrastructure is:</p></li>
 <li><p><strong>Default value:</strong> infra</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">nodes_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">lab007</span>
@@ -340,10 +340,24 @@ Key values have to be in format <code class="docutils literal notranslate"><span
 <div class="section" id="k8s-domain">
 <h3>k8s_domain<a class="headerlink" href="#k8s-domain" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> This is the Internal subdomain for Kubernetes resources. Full domain for infrastructure is: <code class="docutils literal notranslate"><span class="pre">&lt;k8s_domain&gt;.&lt;domain&gt;</span></code></p></li>
+<li><p><strong>Description:</strong> This is the Internal subdomain for Kubernetes resources. The full domain for infrastructure is: <code class="docutils literal notranslate"><span class="pre">&lt;k8s_domain&gt;.&lt;domain&gt;</span></code></p></li>
 <li><p><strong>Default value:</strong> kubernetes</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">k8s_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kubernetes</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="elasticsearch">
+<h3>elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Description:</strong> Password and username which will be set for authorized access
+to elasticsearch. Authorized access allows usage of HTTP methods other than GET.
+Changing these parameters is recommended.</p></li>
+<li><p><strong>Default value:</strong> {admin_username: esadmin, admin_password: esadmin}</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">elasticsearch</span><span class="p">:</span>
+  <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esadmin</span>
+  <span class="nt">admin_password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esadmin</span>
 </pre></div>
 </div>
 </div>
@@ -367,24 +381,10 @@ Key values have to be in format <code class="docutils literal notranslate"><span
 </pre></div>
 </div>
 </div>
-<div class="section" id="elasticsearch">
-<h3>elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p><strong>Description:</strong> Password and username which will be set for authorized access
-to elasticsearch. Authorized access allows usage of HTTP methods other than GET.
-Changing these parameters is recommended.</p></li>
-<li><p><strong>Default value:</strong> {admin_username: esadmin, admin_password: esadmin}</p></li>
-</ul>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">elasticsearch</span><span class="p">:</span>
-  <span class="nt">admin_username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esadmin</span>
-  <span class="nt">admin_password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">esadmin</span>
-</pre></div>
-</div>
-</div>
 <div class="section" id="apiserver-audit-log-maxage">
 <h3>apiserver_audit_log_maxage<a class="headerlink" href="#apiserver-audit-log-maxage" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> The maximum age in days for Kubernetes apiserver audit logs.</p></li>
+<li><p><strong>Description:</strong> This is the maximum age in days for Kubernetes apiserver audit logs.</p></li>
 <li><p><strong>Default value:</strong> 7</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiserver_audit_log_maxage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
@@ -394,7 +394,7 @@ Changing these parameters is recommended.</p></li>
 <div class="section" id="apiserver-audit-log-maxbackup">
 <h3>apiserver_audit_log_maxbackup<a class="headerlink" href="#apiserver-audit-log-maxbackup" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> The maximum number of log files kept for Kubernetes apiserver audit.</p></li>
+<li><p><strong>Description:</strong> This is the maximum number of log files kept for Kubernetes apiserver audit.</p></li>
 <li><p><strong>Default value:</strong> 10</p></li>
 </ul>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">apiserver_audit_log_maxbackup</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
@@ -490,7 +490,7 @@ Changing these parameters is recommended.</p></li>
 <div class="section" id="input-nfs">
 <h3>input_nfs<a class="headerlink" href="#input-nfs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> Definition of input NFS mounts for Samba. By default, internal NFS provisioner is used.</p></li>
+<li><p><strong>Description:</strong> Definition of the input NFS mounts for Samba. By default, internal NFS provisioner is used.</p></li>
 <li><p><strong>Default value:</strong> {}</p></li>
 <li><p><strong>Fields</strong></p>
 <ul>
@@ -503,7 +503,7 @@ Changing these parameters is recommended.</p></li>
 <div class="section" id="output-nfs">
 <h3>output_nfs<a class="headerlink" href="#output-nfs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><strong>Description:</strong> Definition of input NFS mounts for Samba. By default, internal NFS provisioner is used. By default, internal NFS provisioner is used.</p></li>
+<li><p><strong>Description:</strong> Definition of the input NFS mounts for Samba. By default, internal NFS provisioner is used. By default, internal NFS provisioner is used.</p></li>
 <li><p><strong>Default value:</strong> {}</p></li>
 <li><p><strong>Fields</strong></p>
 <ul>
@@ -566,22 +566,22 @@ Changing these parameters is recommended.</p></li>
 <h3>Features List (NFS Default Settings)<a class="headerlink" href="#features-list-nfs-default-settings" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><strong>NFS:</strong> default: True</p></li>
-<li><p><strong>Redsocks:</strong> default: disabled</p></li>
+<li><p><strong>Redsocks:</strong> default: False</p></li>
 </ul>
 </div>
 </div>
 </div>
 <div class="section" id="redsocks-overview">
 <h1>Redsocks Overview<a class="headerlink" href="#redsocks-overview" title="Permalink to this headline">¶</a></h1>
-<p>Redsocks is a tool that allows you to redirect network traffic through a Socket (for example: SOCKS4, SOCKS5 or HTTPs proxy server). Redsocks operates through a proxy server, and as a result it is referred to as a transparent proxy redirector.</p>
+<p>Redsocks is a tool that allows you to redirect network traffic through a socket. For example: SOCKS4, SOCKS5 or HTTPs proxy server. Redsocks operates through a proxy server, and as a result it is referred to as a transparent proxy redirector.</p>
 <ul class="simple">
 <li><p>Refer to <a class="reference external" href="https://medium.com/datadriveninvestor/how-to-transparently-use-a-proxy-with-any-application-docker-using-iptables-and-redsocks-b8301ddc4e1e">How to transparently use a proxy with any application (Docker) using Iptables and Redsocks</a> for more information.</p></li>
 </ul>
 <div class="section" id="redsocks-configuration">
 <h2>Redsocks Configuration<a class="headerlink" href="#redsocks-configuration" title="Permalink to this headline">¶</a></h2>
 <p>Redsocks configuration is an <strong>optional</strong> part of the installer; however, if you choose this option then configure Redsocks appropriately in your environment/organization.</p>
-<p>Redsocks <em>is not</em> enabled during the installation, as the default is set to <em>False</em> (shown in the example below). Therefore, if you want to install Redsocks you <em>must</em> set the feature switch to <strong>True</strong>.</p>
-<p><strong>WARNING:</strong> After the installation should you decide you want to install Redsocks, you will need to redo the entire installation to include Redsocks and set the feature switch to True. It <em><strong>cannot</strong></em> be changed to False in your configuration file after the initial install. Redsocks and NFS are independent of each other, so use judgment when initially setting these feature switches.</p>
+<p>Redsocks <em>is not</em> enabled during the installation, as the default is set to <em>False</em> (shown in the example below). Therefore, if you want to install Redsocks, you <em>must</em> set the feature switch to <strong>True</strong>.</p>
+<p><strong>WARNING:</strong> After the installation if you decide you want to install Redsocks, you will need to redo the entire installation to include Redsocks, and set the feature switch to True. It <em><strong>cannot</strong></em> be changed to False in your configuration file after the initial install. Redsocks and NFS are independent of each other, so use judgment when initially setting these feature switches.</p>
 <div class="section" id="how-to-enable-features">
 <h3>How to Enable Features<a class="headerlink" href="#how-to-enable-features" title="Permalink to this headline">¶</a></h3>
 <p>Additional features can be enabled using features in the configuration, as shown below.</p>
@@ -636,7 +636,7 @@ Changing these parameters is recommended.</p></li>
 </div>
 <div class="section" id="networking-configuration-example">
 <h1>Networking Configuration Example<a class="headerlink" href="#networking-configuration-example" title="Permalink to this headline">¶</a></h1>
-<p>The Figure below shows an example Nauta Networking Diagram. While you can build a cluster with 1 machine to run all the examples it is suggested to utilize at least 4 worker nodes (as shown in the example). The worker nodes should run Red Hat Enterprise Linux 7.5. All interfaces (both external and internal) are Ethernet interfaces.</p>
+<p>The Figure below shows an example Nauta Networking Diagram. While you can build a cluster with 1 machine to run all the examples, it is suggested to utilize at least 4 worker nodes (as shown in the example). The worker nodes should run Red Hat Enterprise Linux 7.6. All interfaces (both external and internal) are Ethernet interfaces.</p>
 <p><img alt="New Users Added" src="../../_images/NN.png" /></p>
 <div class="section" id="next-steps-nauta-installation-requirements">
 <h2>Next Steps: Nauta Installation Requirements<a class="headerlink" href="#next-steps-nauta-installation-requirements" title="Permalink to this headline">¶</a></h2>

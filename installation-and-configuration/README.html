@@ -89,8 +89,18 @@
 <li class="toctree-l1"><a class="reference internal" href="../user-guide/README.html">Product Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user-guide/README.html#nauta-user-guide">Nauta User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Nauta Installation, Configuration, and Administration Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#nauta-installation-procedures">Nauta Installation Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#minimal-memory-and-disk-requirements">Minimal Memory and Disk Requirements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-of-production-environment-setup">Example of Production Environment Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#nauta-installation-procedures">Nauta Installation Procedures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#removing-nauta">Removing Nauta</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#document-flow">Document Flow</a></li>
 </ul>
 
             
@@ -171,6 +181,66 @@
 <div class="section" id="nauta-hardware-requirement-overview">
 <h1>Nauta Hardware Requirement Overview<a class="headerlink" href="#nauta-hardware-requirement-overview" title="Permalink to this headline">¶</a></h1>
 <p>Nauta is intended to run on a multi-server Kubernetes cluster. To run Nauta, you will need at least one Master node, and one or more Worker nodes. Nauta is a platform for performing Deep Learning training, and requires robust hardware specifications to run with optimal performance.</p>
+<div class="section" id="minimal-memory-and-disk-requirements">
+<h2>Minimal Memory and Disk Requirements<a class="headerlink" href="#minimal-memory-and-disk-requirements" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Node</th>
+<th>Count</th>
+<th>CPU</th>
+<th>Memory</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>1</td>
+<td>12</td>
+<td>32Gi</td>
+<td>200Gi</td>
+</tr>
+<tr>
+<td>Worker</td>
+<td>2</td>
+<td>4</td>
+<td>8Gi</td>
+<td>200Gi</td>
+</tr>
+</tbody>
+</table><p><strong>Note:</strong> These requirements are based on our development environments and nctl config command specifications. This configuration has been tested and does function. However, it does indicate that Nauta <em>might</em> work on smaller configurations.</p>
+<div class="section" id="example-of-production-environment-setup">
+<h3>Example of Production Environment Setup<a class="headerlink" href="#example-of-production-environment-setup" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Node</th>
+<th>Count</th>
+<th>CPU</th>
+<th>Memory</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>1</td>
+<td>2x40</td>
+<td>384Gi</td>
+<td>144TB</td>
+</tr>
+<tr>
+<td>Worker</td>
+<td>4</td>
+<td>2x40</td>
+<td>192Gi</td>
+<td>1TB</td>
+</tr>
+</tbody>
+</table><p><strong>Note:</strong> This is just an example of production environment, which is able to run multiple resource demanding experiments at once.</p>
+</div>
+</div>
 </div>
 <div class="section" id="nauta-installation-procedures">
 <h1>Nauta Installation Procedures<a class="headerlink" href="#nauta-installation-procedures" title="Permalink to this headline">¶</a></h1>
@@ -209,6 +279,13 @@
 <li><p>Installs the Nauta server-side application on your new Kubernetes cluster, and starts the system running.</p></li>
 </ul>
 <p>Completing all of the above takes some time. We are working on streamlining the process.</p>
+<div class="section" id="removing-nauta">
+<h2>Removing Nauta<a class="headerlink" href="#removing-nauta" title="Permalink to this headline">¶</a></h2>
+<p>Should you need to delete/remove Nauta, refer to: <a class="reference internal" href="Installation_Process/IP.html"><span class="doc">Installation Process</span></a> page for more details.</p>
+</div>
+</div>
+<div class="section" id="document-flow">
+<h1>Document Flow<a class="headerlink" href="#document-flow" title="Permalink to this headline">¶</a></h1>
 <p>This guide consists of the following main topics, in order. Start here to move through the correct sequence of events.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="System_Software_Components_Requisites/SSCR.html"><span class="doc">System Software Components Requisites</span></a></p></li>

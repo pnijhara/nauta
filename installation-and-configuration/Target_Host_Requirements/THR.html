@@ -90,6 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#document-flow">Document Flow</a></li>
 </ul>
 
             
@@ -156,24 +157,24 @@
             
   <div class="section" id="target-host-requirements">
 <h1>Target Host Requirements<a class="headerlink" href="#target-host-requirements" title="Permalink to this headline">¶</a></h1>
-<p>For the <em>Target host</em>, install Nauta <strong>on bare metal only</strong> with Red Hat Enterprise Linux 7.5 (this can be preinstalled).</p>
+<p>For the <em>Target host</em>, install Nauta <strong>on bare metal only</strong> with Red Hat Enterprise Linux 7.6 (this can be preinstalled).</p>
 <ul class="simple">
 <li><p>Configured access to the master host over SSH.</p>
 <ul>
-<li><p>This is configured access from your <em>Installer Machine to your Target Host (master)</em>.</p></li>
+<li><p>This is configured access from your <em>Installer Machine to your Target Host (master).</em></p></li>
 </ul>
 </li>
-<li><p>Full network connectivity between target hosts is required. In addition, Installer connectivity is only required to the master node.</p></li>
+<li><p>Full network connectivity between a target hosts is required. In addition, Installer connectivity is only required to the master node.</p></li>
 </ul>
 <p>This section discusses the following main topics:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#red-hat-enterprise-linux">Red Hat Enterprise Linux 7.5</a></p></li>
+<li><p><a class="reference external" href="#red-hat-enterprise-linux">Red Hat Enterprise Linux 7.6</a></p></li>
 <li><p><a class="reference external" href="#valid-repositories">Valid Repositories</a></p></li>
 <li><p><a class="reference external" href="#repositories-list">Repositories List</a></p></li>
 </ul>
 <div class="section" id="red-hat-enterprise-linux">
 <h2>Red Hat Enterprise Linux<a class="headerlink" href="#red-hat-enterprise-linux" title="Permalink to this headline">¶</a></h2>
-<p>Red Hat Enterprise Linux 7.5 is required, as well as the following required packages:</p>
+<p>Red Hat Enterprise Linux 7.6 is required, as well as the following required packages:</p>
 <ul class="simple">
 <li><p>byacc</p></li>
 <li><p>cifs-utils</p></li>
@@ -216,12 +217,12 @@
 </div>
 <div class="section" id="valid-repositories">
 <h2>Valid Repositories<a class="headerlink" href="#valid-repositories" title="Permalink to this headline">¶</a></h2>
-<p>If the operating system is installed and configured with a valid repository that contains the required packages, an Administrator <em>does not</em> need to install the packages manually. However, if the repository <em>is not</em> valid, the Installer  attempts to install the package automatically. If this fails an error message is displayed.</p>
+<p>If the operating system is installed and configured with a valid repository that contains the required packages, an Administrator <em>does not</em> need to install the packages manually. However, if the repository <em>is not</em> valid, the Installer  attempts to install the package automatically. If this fails, an error message is displayed.</p>
 </div>
 <div class="section" id="repositories-list">
 <h2>Repositories List<a class="headerlink" href="#repositories-list" title="Permalink to this headline">¶</a></h2>
 <p>Use the following command to check your repository list: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">repolist</span> <span class="pre">all</span></code></p>
-<p>A list of <strong>required</strong> enabled repositories for RHEL 7.5, is:</p>
+<p>A list of <strong>required</strong> enabled repositories for RHEL 7.6, is:</p>
 <ul class="simple">
 <li><p>Extra Packages for Enterprise Linux 7 - x86_64</p></li>
 <li><p>Red Hat Enterprise Linux 7 Server - x86_64</p></li>
@@ -229,7 +230,7 @@
 <li><p>Red Hat Enterprise Linux 7 Server (Optional) - x86_64</p></li>
 <li><p>Red Hat Enterprise Linux 7 Server (Supplementary) - x86_64</p></li>
 </ul>
-<p>A list of <strong>required</strong> enabled repositories for Centos 7.5, is:</p>
+<p>A list of <strong>required</strong> enabled repositories for Centos 7.6, is:</p>
 <ul class="simple">
 <li><p>CentOS-7 - Base</p></li>
 <li><p>CentOS-7 - Extras</p></li>
@@ -239,9 +240,7 @@
 </div>
 <div class="section" id="data-directory">
 <h2>Data directory<a class="headerlink" href="#data-directory" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">/data</span></code> directory must be created on master node before installation. This directory will contain persistent
-Kubernetes’ and Nauta’s data. Preferably you should mount a separate disk to this directory - size depends
-on your needs and number of users, 70Gi disk size is a reasonable default for a three node Nauta environment.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">/data</span></code> directory <em>must</em> be created on the master node before installation. This directory contains persistent Kubernetes’, as well as explicit Nauta data. Therefore, you should mount a separate disk to this directory. However, the size is dependent on your needs and the number of users. The recommended disk size is 70Gi, as this is a practical solution for a default three-node Nauta environment.</p>
 </div>
 <div class="section" id="next-steps-preparing-for-the-nauta-installation">
 <h2>Next Steps: Preparing for the Nauta Installation<a class="headerlink" href="#next-steps-preparing-for-the-nauta-installation" title="Permalink to this headline">¶</a></h2>
