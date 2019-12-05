@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -157,19 +157,21 @@
             
   <div class="section" id="mounting-experiment-input-to-nauta-storage">
 <h1>Mounting Experiment Input to Nauta Storage<a class="headerlink" href="#mounting-experiment-input-to-nauta-storage" title="Permalink to this headline">¶</a></h1>
-<p>Perform these steps to mount a local <code class="docutils literal notranslate"><span class="pre">folder/machine</span></code> to Nauta storage and use the files when performing training.</p>
-<p><strong>Note</strong>: The names used below are for example purposes only.</p>
+<p>To mount a local <code class="docutils literal notranslate"><span class="pre">folder</span></code> to the Nauta storage and use the files when performing training, execute the following steps.</p>
+<p><strong>Note</strong>: The names used below are for example purposes only. Also, refer to <a class="reference external" href="http://man7.org/linux/man-pages/man8/mount.8.html">Mount Options</a> for more details.</p>
+<p><strong>Linux/macOS</strong></p>
 <ol>
-<li><p><strong>Linux/macOS</strong> Create a folder for mounting named <code class="docutils literal notranslate"><span class="pre">my_input</span></code>.</p>
+<li><p>Create a folder for mounting and name it <code class="docutils literal notranslate"><span class="pre">my_input</span></code> by executing the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">my_input</span></code></p>
 </li>
-<li><p>Use the mount command to display the command that should be used to mount your local folder/machine to your Nauta input folder.</p>
+<li><p>Execute the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command to display the command you should use to mount your local folder to your Nauta input folder.</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">mount</span></code></p>
 </li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">mount_smbfs</span></code> or <code class="docutils literal notranslate"><span class="pre">net</span> <span class="pre">use</span></code> or <code class="docutils literal notranslate"><span class="pre">mount.cfis</span></code> as appropriate. The command is dependent on the operating system.</p></li>
-<li><p><strong>Linux/macOS</strong> For Linux/macOS users, the MOUNTPOINT is the <code class="docutils literal notranslate"><span class="pre">my_input</span></code> folder.</p></li>
-<li><p><strong>Linux/macOS only</strong>: Navigate to <code class="docutils literal notranslate"><span class="pre">my_input</span></code></p></li>
-<li><p>Copy the input data or files to this folder for use when submitting experiments.</p></li>
+<li><p>Enter <code class="docutils literal notranslate"><span class="pre">mount_smbfs</span></code> or <code class="docutils literal notranslate"><span class="pre">mount.cfis</span></code> as appropriate. Be aware, these commands are dependent on the operating system you are using.</p>
+<p><strong>Note:</strong> The MOUNTPOINT is your <code class="docutils literal notranslate"><span class="pre">my_input</span></code> folder.</p>
+</li>
+<li><p>Navigate to the <code class="docutils literal notranslate"><span class="pre">my_input</span></code> folder.</p></li>
+<li><p>Copy the input data or files to this folder (<code class="docutils literal notranslate"><span class="pre">my_input</span></code>) for use when submitting experiments.</p></li>
 </ol>
 <hr class="docutils" />
 <div class="section" id="return-to-start-of-document">

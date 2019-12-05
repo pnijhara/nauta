@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -157,7 +157,7 @@
             
   <div class="section" id="model-command">
 <h1>model Command<a class="headerlink" href="#model-command" title="Permalink to this headline">¶</a></h1>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">model</span></code> command to manage model export related tasks. Following are the subcommands for the <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span></code> command. This main command also includes the following subcommands:</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">model</span></code> command to manage model export related tasks. Use the <code class="docutils literal notranslate"><span class="pre">model</span></code> command to manage model export related tasks. The <code class="docutils literal notranslate"><span class="pre">model</span></code>command has the following subcommands:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="#status-subcommand">status Subcommand</a></p></li>
 <li><p><a class="reference external" href="#export-subcommand">export Subcommand</a></p></li>
@@ -187,13 +187,28 @@
 <tr>
 <td align="left"><code>-u, --username</code></td>
 <td align="left">No</td>
-<td align="left">Name of a user to whom viewed operations belongs. If not given, only models of a current user are taken into account</td>
+<td align="left">Name of a user to whom viewed operations belongs. If not given, only models of a current user are taken into account.</td>
+</tr>
+<tr>
+<td align="left"><code>-f, --force</code></td>
+<td align="left">No</td>
+<td align="left">Force command execution by ignoring (most) confirmation prompts</td>
+</tr>
+<tr>
+<td align="left"><code>-v, --verbose</code></td>
+<td align="left">No</td>
+<td align="left">Set verbosity level: <br><code>-v</code> for INFO, <br><code>-vv</code> for DEBUG</td>
+</tr>
+<tr>
+<td align="left"><code>-h, --help</code></td>
+<td align="left">No</td>
+<td align="left">Displays help messaging information.</td>
 </tr>
 </tbody>
 </table></div>
 <div class="section" id="returns">
 <h3>Returns<a class="headerlink" href="#returns" title="Permalink to this headline">¶</a></h3>
-<p>Command displays a list of operations with their statuses, dates of start and finish and the users who submitted those operations.</p>
+<p>This command displays a list of operations with their statuses, dates of start and finish, and displays the users who submitted those operations.</p>
 </div>
 <div class="section" id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
@@ -205,35 +220,91 @@
 <span class="o">|</span> <span class="n">openvino_3</span>                                         <span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">16</span><span class="n">T14</span><span class="p">:</span><span class="mi">29</span><span class="p">:</span><span class="mi">54</span><span class="n">Z</span> <span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">16</span><span class="n">T14</span><span class="p">:</span><span class="mi">30</span><span class="p">:</span><span class="mi">00</span><span class="n">Z</span> <span class="o">|</span> <span class="n">jdoe</span>      <span class="o">|</span> <span class="n">Succeeded</span> <span class="o">|</span>
 </pre></div>
 </div>
-<p>Displays details of 3 model export operations - two of them finished with success, one failed.</p>
+<p>Displays details of 3 model export operations: two of them finished with success, one failed.</p>
 </div>
 </div>
 <div class="section" id="export-subcommand">
 <h2>export Subcommand<a class="headerlink" href="#export-subcommand" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="id1">
 <h3>Synopsis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Exports an existing model located in the PATH folder to a given FORMAT with given options. If <code class="docutils literal notranslate"><span class="pre">formats</span></code> option is given, it displays a list of available export formats.</p>
+<p>Exports an existing model located in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> folder to a given <code class="docutils literal notranslate"><span class="pre">FORMAT</span></code> with given options. If the<code class="docutils literal notranslate"><span class="pre">formats</span></code> option is given, it displays a list of available export formats.</p>
 </div>
 <div class="section" id="id2">
 <h3>Syntax<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">PATH/formats</span> <span class="pre">FORMAT</span> <span class="pre">[--</span> <span class="pre">operation</span> <span class="pre">options]</span></code></p>
 </div>
-<div class="section" id="arguments">
-<h3>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h3>
-<p>| Name | Required | Description |
-|:— |:— |:— |
-|<code class="docutils literal notranslate"><span class="pre">PATH/formats</span></code> | Yes | <code class="docutils literal notranslate"><span class="pre">PATH</span></code> - Location of a model that is going to be exported. Models can be stored <code class="docutils literal notranslate"><span class="pre">only</span></code> in shared folders. Furthermore, this command <code class="docutils literal notranslate"><span class="pre">does</span> <span class="pre">not</span></code> handle models located in local folders. <code class="docutils literal notranslate"><span class="pre">formats</span></code> - if given, command displays a list of available formats.|
-|<code class="docutils literal notranslate"><span class="pre">FORMAT</span></code> | No | Format of an exported model. List of available formats can be obtained by executing <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">formats</span></code> command. Required if <code class="docutils literal notranslate"><span class="pre">PATH</span></code> has been given.|
-|<code class="docutils literal notranslate"><span class="pre">operation</span> <span class="pre">options</span></code> | No | String with a list of parameters that are passed to a workflow responsible for exporting a model. All such parameters should be added at the end of the command after <code class="docutils literal notranslate"><span class="pre">--</span></code> string. |</p>
-</div>
 <div class="section" id="id3">
-<h3>Returns<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Should issues arise, a message (or messages) with a description of their cause (or causes) displays. If an export’s operation starts, then the information about that operation and its details displays.
-If <code class="docutils literal notranslate"><span class="pre">formats</span></code> option is given - a list of available export formats with a short description of parameters accepted by those formats displays.</p>
-</div>
+<h3>Options<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Required</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>-u, --username</code></td>
+<td align="left">No</td>
+<td align="left">Name of a user to whom viewed operations belongs. If not given, only models of a current user are taken into account.</td>
+</tr>
+<tr>
+<td align="left"><code>-f, --force</code></td>
+<td align="left">No</td>
+<td align="left">Force command execution by ignoring (most) confirmation prompts</td>
+</tr>
+<tr>
+<td align="left"><code>-v, --verbose</code></td>
+<td align="left">No</td>
+<td align="left">Set verbosity level: <br><code>-v</code> for INFO, <br><code>-vv</code> for DEBUG</td>
+</tr>
+<tr>
+<td align="left"><code>-h, --help</code></td>
+<td align="left">No</td>
+<td align="left">Displays help messaging information.</td>
+</tr>
+</tbody>
+</table>
+<h3>Arguments</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Required</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>PATH/formats</code></td>
+<td align="left">Yes</td>
+<td align="left"><code>PATH</code> - The location of a model that is going to be exported. Models can be stored <code>only</code> in shared folders. Furthermore, this command <em>does not</em> handle models located in local folders. The formats command (if given) displays a list of available formats.</td>
+</tr>
+<tr>
+<td align="left"><code>FORMAT</code></td>
+<td align="left">No</td>
+<td align="left">Format of an exported model. List of available formats can be obtained by executing <code>export formats</code> command. Required if <code>PATH</code> has been given.</td>
+</tr>
+<tr>
+<td align="left"><code>operation options</code></td>
+<td align="left">No</td>
+<td align="left">String with a list of parameters that are passed to a workflow responsible for exporting a model. All such parameters should be added at the end of the command after <code>--</code> string.</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="id4">
-<h3>Example<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">/mnt/input/home/pretrained_model</span> <span class="pre">openvino</span> <span class="pre">--</span> <span class="pre">--output</span> <span class="pre">ArgMax</span></code>  Please wait for Tensorboard to run</p>
+<h3>Returns<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Should issues occur, a message (or messages) with a description of their cause (or causes) displays. If an export’s operation starts, then the related operation information and its details displays.
+If <code class="docutils literal notranslate"><span class="pre">formats</span></code> option is given, a list of available export formats with a short description of parameters accepted by those formats displays.</p>
+</div>
+<div class="section" id="example-1">
+<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
+<p>Wait for Tensorboard to run.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">/mnt/input/home/pretrained_model</span> <span class="pre">openvino</span> <span class="pre">--</span> <span class="pre">--output</span> <span class="pre">ArgMax</span></code></p>
+</div>
+<div class="section" id="output-1">
+<h3>Output 1<a class="headerlink" href="#output-1" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Operation</span>     <span class="o">|</span> <span class="n">Start</span> <span class="n">date</span>           <span class="o">|</span> <span class="n">End</span> <span class="n">date</span>   <span class="o">|</span> <span class="n">Owner</span>     <span class="o">|</span> <span class="n">State</span>   <span class="o">|</span>
 <span class="o">|---------------+----------------------+------------+-----------+---------|</span>
 <span class="o">|</span> <span class="n">openvino_1</span>    <span class="o">|</span> <span class="mi">2019</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">17</span><span class="n">T16</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="mi">40</span><span class="n">Z</span> <span class="o">|</span>            <span class="o">|</span> <span class="n">jdoe</span>      <span class="o">|</span> <span class="n">Queued</span>  <span class="o">|</span>
@@ -241,8 +312,15 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 <span class="n">Successfully</span> <span class="n">created</span> <span class="n">export</span> <span class="n">workflow</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="example-2">
+<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
 <p>Exports an existing model located in the <code class="docutils literal notranslate"><span class="pre">pretrained_model</span></code> folder in <code class="docutils literal notranslate"><span class="pre">input</span></code> shared folder.</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">formats</span></code></p>
+</div>
+<div class="section" id="output-2">
+<h3>Output 2<a class="headerlink" href="#output-2" title="Permalink to this headline">¶</a></h3>
+<p>Displays a list of available export formats with a short description of parameters accepted by them.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Name</span>     <span class="o">|</span> <span class="n">Parameters</span> <span class="n">description</span>                                                       <span class="o">|</span>
 <span class="o">|----------+------------------------------------------------------------------------------|</span>
 <span class="o">|</span> <span class="n">openvino</span> <span class="o">|</span> <span class="o">--</span><span class="n">input_shape</span> <span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">....</span><span class="p">]</span> <span class="o">-</span> <span class="n">shape</span> <span class="n">of</span> <span class="n">an</span> <span class="nb">input</span>                                 <span class="o">|</span>
@@ -251,7 +329,6 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 <span class="o">|</span>          <span class="o">|</span> <span class="n">Rest</span> <span class="n">of</span> <span class="n">parameters</span> <span class="n">can</span> <span class="n">be</span> <span class="n">found</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">description</span> <span class="n">of</span> <span class="n">OpenVino</span> <span class="n">model</span> <span class="n">optimizer</span> <span class="o">|</span>
 </pre></div>
 </div>
-<p>Displays a list of available export formats with a short description of parameters accepted by them.</p>
 </div>
 </div>
 <div class="section" id="logs-subcommand">
@@ -264,8 +341,8 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 <h3>Syntax<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">logs</span> <span class="pre">[options]</span> <span class="pre">OPERATION-NAME</span></code></p>
 </div>
-<div class="section" id="id7">
-<h3>Arguments<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="arguments">
+<h3>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -282,8 +359,8 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 </tr>
 </tbody>
 </table></div>
-<div class="section" id="id8">
-<h3>Options<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h3>Options<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -306,27 +383,27 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 <tr>
 <td align="left"><code>-m, --match TEXT</code></td>
 <td align="left">No</td>
-<td align="left">If given, command searches for logs from operations matching the value of this option. This option cannot be used along with the OPERATION-NAME argument.</td>
+<td align="left">If given, this command searches for logs from operations matching the value of this option. This option cannot be used along with the OPERATION-NAME argument.</td>
 </tr>
 <tr>
 <td align="left"><code>-o, --output</code></td>
 <td align="left">No</td>
-<td align="left">If given, logs are stored in a file with a name derived from a name of an experiment.</td>
+<td align="left">If given, the logs are stored in a file with a name derived from a name of an experiment.</td>
 </tr>
 <tr>
 <td align="left"><code>-pa, --pager</code></td>
 <td align="left">No</td>
-<td align="left">Display logs in interactive pager. Press <em>q</em> to exit the pager.</td>
+<td align="left">Display the logs in interactive pager. Press <em>q</em> to exit the pager.</td>
 </tr>
 <tr>
 <td align="left"><code>-fl, --follow</code></td>
 <td align="left">No</td>
-<td align="left">Specify if logs should be streamed. Only logs from a single experiment can be streamed.</td>
+<td align="left">Specifies if the logs should be streamed. Only logs from a single experiment can be streamed.</td>
 </tr>
 <tr>
 <td align="left"><code>-f, --force</code></td>
 <td align="left">No</td>
-<td align="left">Ignore (most) confirmation prompts during command execution</td>
+<td align="left">Force command execution by ignoring (most) confirmation prompts.</td>
 </tr>
 <tr>
 <td align="left"><code>-v, --verbose</code></td>
@@ -340,15 +417,23 @@ If <code class="docutils literal notranslate"><span class="pre">formats</span></
 </tr>
 </tbody>
 </table></div>
-<div class="section" id="id9">
-<h3>Returns<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
-<p>Should issues arise, a message (or messages) with a description of their cause (or causes) displays. Otherwise, the logs are filtered based on command’s parameters.</p>
+<div class="section" id="id8">
+<h3>Returns<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Should issues occur, a message (or messages) containing a description of their cause (or causes) displays. Otherwise, the logs are filtered based on command’s parameters.</p>
 </div>
-<div class="section" id="id10">
-<h3>Example<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h3>Example<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">logs</span> <span class="pre">openvino_2</span></code></p>
 <p>Displays logs from <code class="docutils literal notranslate"><span class="pre">openvino_2</span></code> model export operation.</p>
 </div>
+</div>
+<hr class="docutils" />
+<div class="section" id="return-to-start-of-document">
+<h2>Return to Start of Document<a class="headerlink" href="#return-to-start-of-document" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../README.html"><span class="doc">README</span></a></p></li>
+</ul>
+<hr class="docutils" />
 </div>
 </div>
 

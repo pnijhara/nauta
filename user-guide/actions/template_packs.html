@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -163,39 +163,28 @@
 <li><p><a class="reference external" href="#pack-anatomy">Pack Anatomy</a></p></li>
 <li><p><a class="reference external" href="#provided-template-packs">Provided Template Packs</a></p></li>
 <li><p><a class="reference external" href="#customizing-the-provided-packs">Customizing the Provided Packs</a></p></li>
-<li><p><a class="reference external" href="#altering-parameters-listed-in-the-yaml-file">Altering Parameters Listed in the YAML File</a></p></li>
+<li><p><a class="reference external" href="#altering-parameters-listed-in-the-yaml-file">Altering Parameters Listed in the values.yaml</a></p></li>
 <li><p><a class="reference external" href="#creating-a-new-template-pack">Creating a New Template Pack</a></p></li>
 <li><p><a class="reference external" href="#a-template-pack-in-five-simple-steps">A Template Pack in Five Simple Steps</a></p></li>
+<li><p><a class="reference external" href="#template-pack-management">Template Pack Management</a></p></li>
 </ul>
 <div class="section" id="what-is-a-template-pack">
 <h2>What is a Template Pack?<a class="headerlink" href="#what-is-a-template-pack" title="Permalink to this headline">¶</a></h2>
-<p>Every experiment run on the Nauta application utilizes a template pack. For each experiment,
-a template pack defines the experiment’s complete runtime environment and any supporting infrastructure required to run
-that experiment.</p>
-<p>Each template pack includes a number of elements or templates that together define the Kubernetes* (K8s) application,
-which executes a user-provided experiment script based on specific supporting technology.</p>
+<p>Every experiment run on the Nauta application utilizes a template pack (as shown in the figure below). For each experiment, a template pack defines the experiment’s complete runtime environment and any supporting infrastructure required to run that experiment.</p>
+<p>Each template pack includes a number of elements or templates that together define the Kubernetes (K8s) application, which executes a user-provided experiment script based on specific supporting technology.</p>
 <p>Each template pack includes templates that define a Dockerfile, the Kubernetes service definition, deployments,
 jobs, a configuration map and any other standard Kubernetes elements needed to create a runtime environment
 for an experiment instance.</p>
 <p><img alt="Image" src="../../_images/template_pack.png" /></p>
-<p>Individual elements within a pack are referred to as templates because they contain a number of placeholders that are
-substituted with appropriate values by Nauta software during experiment submission. Some placeholders are required
-while others are optional, and these placeholders define items such as: experiment name, user namespace,
-the address of the local Nauta Docker registry, and other variables that may change between different experiment runs.</p>
-<p>The core Kubernetes definitions within each pack are grouped into <a class="reference external" href="https://helm.sh/">Helm Packages</a>
-referred to as <em>Charts</em>. Helm is the de-facto standard for Kubernetes application packaging,
-and reusing this package format allows leveraging of the large resource of community-developed Helm charts
-when creating new Nauta template packs.</p>
-<p><strong>Note 1:</strong> While Nauta is able to re-use Helm charts mostly verbatim, there are a number of required placeholders
-that need to be added to these charts for Nauta to track and manage the resulting experiments.
-Refer to <a class="reference external" href="#creating-a-new-template-pack">Creating a New Template Pack</a> below for details.</p>
+<p>Individual elements within a pack are referred to as templates because they contain a number of placeholders that are substituted with appropriate values by Nauta software during experiment submission. Some placeholders are required, while others are optional. These placeholders define items such as experiment name, user namespace, the address of the local Nauta Docker registry, and other variables that may change between different experiment runs.</p>
+<p>The core Kubernetes definitions within each pack are grouped into the <a class="reference external" href="https://helm.sh/">Helm Packages</a> referred to as <em>Charts</em>. Helm is the de-facto standard for Kubernetes application packaging, and reusing this package format allows leveraging of the large resource of community-developed Helm charts when creating new Nauta template packs.</p>
+<p><strong>Note 1:</strong> While Nauta is able to re-use Helm charts mostly verbatim, there are a number of required placeholders that need to be added to these charts for Nauta to track and manage the resulting experiments. Refer to <a class="reference external" href="#creating-a-new-template-pack">Creating a New Template Pack</a> below for details.</p>
 <p><strong>Note 2:</strong> All officially supported Nauta template packs are distributed together with the <code class="docutils literal notranslate"><span class="pre">nctl</span></code> package.</p>
 </div>
-</div>
 <div class="section" id="pack-anatomy">
-<h1>Pack Anatomy<a class="headerlink" href="#pack-anatomy" title="Permalink to this headline">¶</a></h1>
+<h2>Pack Anatomy<a class="headerlink" href="#pack-anatomy" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="location">
-<h2>Location<a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h2>
+<h3>Location<a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h3>
 <p>When the <code class="docutils literal notranslate"><span class="pre">nctl</span></code> package is installed on the client machine,
 the template packs that come with the official package are deposited in the folder:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NAUTA_HOME</span><span class="o">/</span><span class="n">config</span><span class="o">/</span><span class="n">packs</span>
@@ -204,7 +193,7 @@ the template packs that come with the official package are deposited in the fold
 <p>Each pack resides in a dedicated sub-folder, named after the pack.</p>
 </div>
 <div class="section" id="the-pack-folder-structure">
-<h2>The Pack Folder Structure<a class="headerlink" href="#the-pack-folder-structure" title="Permalink to this headline">¶</a></h2>
+<h3>The Pack Folder Structure<a class="headerlink" href="#the-pack-folder-structure" title="Permalink to this headline">¶</a></h3>
 <p>The individual items that form a single pack are laid out in its folder as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">&lt;</span><span class="n">PACK_NAME</span><span class="o">&gt;/</span>
         <span class="n">Dockerfile</span>
@@ -216,29 +205,20 @@ the template packs that come with the official package are deposited in the fold
 </div>
 <p><em><strong>Where:</strong></em></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> is the docker file that defines the Docker image which serves as the runtime for the experiment’s script
-supplied by the user. Any dependencies needed to build the Docker image must be placed in this directory,
-next to the Dockerfile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> is the Docker file that defines the Docker image which serves as the runtime for the experiment’s script supplied by the user. Any dependencies needed to build the Docker image <em>must be</em> placed in this directory, next to the Dockerfile.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">charts</span></code> is a directory that hosts the <em>Helm</em> chart that specifies the definitions of all Kubernetes entities
 used to deploy and support the experiment’s Docker image in the cluster.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Chart.yaml</span></code> provides the key metadata for the chart, such as name and version, about the chart.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> serves a key role as it provides definitions for various <em>Helm</em> template placeholders
-(see Helm’s  <a class="reference external" href="https://docs.helm.sh/chart_template_guide/">Chart Template Guide</a> for details) used throughout the chart
-(mostly in the individual Kubernetes definitions contained within the <code class="docutils literal notranslate"><span class="pre">templates</span></code> sub-folder).
-This file is also parsed and analyzed by <code class="docutils literal notranslate"><span class="pre">nctl</span></code> to perform substitution
-on the <a class="reference external" href="#nauta-valuesyaml-placeholders">NAUTA placeholders</a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">templates</span></code> folder groups all the YAML files that provide definitions for various Kubernetes (K8s) entities,
-which define the packs deployment and runtime environment. These definitions are referred to as
-<em>templates</em> as they <em>may</em> include <em>Helm</em> template placeholders substituted for actual values in the process of
-deploying the chart on the cluster.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Chart.yaml</span></code> provides the key metadata for the chart, such as name and version, and about the chart.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> serves a key role as it provides definitions for various <em>Helm</em> template placeholders (see Helm’s  <a class="reference external" href="https://docs.helm.sh/chart_template_guide/">Chart Template Guide</a> for details) used throughout the chart (mostly in the individual Kubernetes definitions contained within the <code class="docutils literal notranslate"><span class="pre">templates</span></code> sub-folder). This file is also parsed and analyzed by <code class="docutils literal notranslate"><span class="pre">nctl</span></code> to perform substitution on the NAUTA placeholders.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">templates</span></code> folder groups all the YAML files that provide definitions for various Kubernetes (K8s) entities, which define the packs deployment and runtime environment. These definitions are referred to as <em>templates</em> as they <em>may</em> include <em>Helm</em> template placeholders substituted for actual values in the process of deploying the chart on the cluster.</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="provided-template-packs">
 <h2>Provided Template Packs<a class="headerlink" href="#provided-template-packs" title="Permalink to this headline">¶</a></h2>
-<p>The Nauta software is shipped with a number of built-in template packs that represent the types of experiments
-officially supported and validated.
-All packs are optimized for non-trivial deep learning tasks executed on Intel’s two socket Xeon systems,
-and therefore the default compute configuration is the following:</p>
+<p>The Nauta software is shipped with a number of built-in template packs that represent the types of experiments officially supported and validated and supports Python 3.6.x user scripts.</p>
+<p>Packs with multi-suffix in the name support multinode experiments, while those with a single-suffix are designed for single node experiments only.</p>
+<p>All packs are optimized for non-trivial deep learning tasks executed on Intel’s two socket Xeon systems, and therefore the default compute configuration is the following:</p>
 <table>
   <tr>
     <th>Type</th>
@@ -256,16 +236,18 @@ and therefore the default compute configuration is the following:</p>
      <td>~0.9 available memory</td>
      <td>1</td>
   </tr>
-</table><p>In general, the single node packs are configured to take roughly half of the available resources on a single node
-(so that the user can “fit” two experiments on a single node), while multi node packs utilize the entire resources
-on each node that participates in the multi-node configuration.</p>
-<p>While these defaults are intended to guarantee the best possible experience when training on Nauta,
-it is possible to adjust the compute resource requirements either on per-experiemnt basis or permanently
-(see <a class="reference external" href="#customizing-the-provided-packs">Customizing the Provided Packs</a>).</p>
+</table><p>In general, the single node packs are configured to take roughly half of the available resources on a single node (so that the you can <em>fit</em> two experiments on a single node), while multi node packs utilize the entire resources on each node that participates in the multi-node configuration.</p>
+<p>While these defaults are intended to guarantee the best possible experience when training on Nauta, it is possible to adjust the compute resource requirements either on per-experiment basis or permanently (see <a class="reference external" href="#customizing-the-provided-packs">Customizing the Provided Packs</a>).</p>
 <p>The Nauta software should contain at least the following template packs (list of template packs delivered
-together with the Nauta software depends on a content of the Template zoo repository at the moment
+together with the Nauta software depends on the content of the template zoo repository at the moment
 of building a certain version of the Nauta nctl client):</p>
 <ul class="simple">
+<li><p><strong>jupyter</strong> - An interactive session based on Jupyter Notebook using Python 3.</p></li>
+<li><p><strong>ovms-inference-batch</strong> - An OpenVINO model server inference job for batch predictions.</p></li>
+<li><p><strong>ovms-inference-stream</strong> - OpenVINO model server inference job for streaming predictions on a deployed instance.</p></li>
+<li><p><strong>pytorch</strong> - A PyTorch single or multi-node training job using Python 3.</p></li>
+<li><p><strong>tf-inference-batch</strong> - A TensorFlow Serving inference job for batch predictions.</p></li>
+<li><p><strong>tf-inference-stream</strong> - A TensorFlow Serving inference job for streaming predictions on a deployed instance.</p></li>
 <li><p><strong>tf-training-horovod</strong> - A TensorFlow multi-node training job based on Horovod using Python 3.</p></li>
 <li><p><strong>tf-training-multi</strong> - A TensorFlow multi-node training job based on TfJob using Python 3.</p></li>
 <li><p><strong>tf-training-single</strong> - A TensorFlow single-node training job based on TfJob using Python 3.</p></li>
@@ -279,86 +261,72 @@ the <em>Helm</em> chart, and therefore it plays a crucial role in the process of
 Kubernetes definitions deployed on the cluster.</p>
 <p>By convention, the definitions contained in the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file typically reference parameters that are intended
 to be customized by end-users, so in most cases it is safe to manipulate those without corrupting the pack.</p>
-<p><strong>Note:</strong> This is in contrast to parameters <em>not</em> intended for customization; these parameters typically live within
-the templates themselves.)</p>
+<p><strong>Note:</strong> This is in contrast to parameters <em>not</em> intended for customization. In addition, these parameters typically live within the templates themselves.</p>
 </div>
 <div class="section" id="altering-parameters-listed-in-the-yaml-file">
 <h2>Altering Parameters Listed in the YAML File<a class="headerlink" href="#altering-parameters-listed-in-the-yaml-file" title="Permalink to this headline">¶</a></h2>
-<p>When altering parameters listed in the YAML file: `values.yaml, there are two approaches:</p>
+<p>When altering parameters listed in the YAML file: <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code>, there are two approaches:</p>
 <ol class="simple">
-<li><p>Users <em>may</em> manually modify the pack’s <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file using a text editor. Any modifications done using this
-approach will be permanent and apply to all subsequent experiments based on this pack.</p></li>
-<li><p>Users <em>may</em> alter some of the parameters listed in <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file temporarily, and only for a single experiment.
-To do so the user may specify alternative values for any of the parameters listed in <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> using the
-<code class="docutils literal notranslate"><span class="pre">--pack_param</span></code> option when submitting an experiment (please see the <code class="docutils literal notranslate"><span class="pre">nctl</span></code> manual for more details).</p></li>
+<li><p>You <em>may</em> manually modify the pack’s <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file using a text editor. Any modifications done using this approach will be permanent and apply to all subsequent experiments based on this pack.</p></li>
+<li><p>You <em>may</em> alter some of the parameters listed in the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file temporarily, and only for a single experiment. To do so, you may specify alternative values for any of the parameters listed in the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> using the <code class="docutils literal notranslate"><span class="pre">--pack_param</span></code> option when submitting an experiment (please see the <code class="docutils literal notranslate"><span class="pre">nctl</span></code> manual for more details).</p></li>
 </ol>
-<p>Advanced users who want full control over how their experiments are deployed and executed on the Kubernetes cluster
-<em>may</em> also directly modify the templates residing in the <code class="docutils literal notranslate"><span class="pre">&lt;PACK_NAME&gt;/charts/templates/</span></code> folder. Doing this, however
-requires a good grasp of Kubernetes concepts, notation, and debugging techniques, and is therefore <em>not recommended</em>.</p>
+<p>If you are an advanced user and want full control over how experiments are deployed and executed on the Kubernetes cluster, you <em>may</em> also directly modify the templates residing in the <code class="docutils literal notranslate"><span class="pre">&lt;PACK_NAME&gt;/charts/templates/</span></code> folder. Doing this, however requires a good grasp of Kubernetes concepts, notation, and debugging techniques, and is therefore <strong><em>not recommended</em></strong>.</p>
 </div>
 </div>
 <div class="section" id="creating-a-new-template-pack">
 <h1>Creating a New Template Pack<a class="headerlink" href="#creating-a-new-template-pack" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
-<p>Creating a new pack, while not overly complex, requires some familiarity with the technologies that packs are built on.
-Therefore, it is recommended to have at least some working experience in the following areas do this:</p>
+<p>Creating a new pack, while <em>not</em> overly complex, requires some familiarity with the technologies that packs are built on. Therefore, it is recommended to have at least some working experience in the following areas do this:</p>
 <ul class="simple">
 <li><p>Creating/modifying <em>Helm</em> charts and specifically using the
 <a class="reference external" href="https://docs.helm.sh/chart_template_guide/">Helm Templates</a>.</p></li>
 <li><p>Defining and managing <em>Kubernetes</em> entities such as <code class="docutils literal notranslate"><span class="pre">pods</span></code>,
-<code class="docutils literal notranslate"><span class="pre">jobs</span></code>, <code class="docutils literal notranslate"><span class="pre">deployments</span></code>, <code class="docutils literal notranslate"><span class="pre">services</span></code>, etc.</p></li>
+<code class="docutils literal notranslate"><span class="pre">jobs</span></code>, <code class="docutils literal notranslate"><span class="pre">deployments</span></code>, <code class="docutils literal notranslate"><span class="pre">services</span></code>, and so on.</p></li>
 </ul>
 <div class="section" id="where-to-start">
 <h3>Where to Start<a class="headerlink" href="#where-to-start" title="Permalink to this headline">¶</a></h3>
-<p>Creating new template packs for Nauta is greatly simplified by leveraging the relatively ubiquitous <em>Helm</em> chart format
-as the foundation. Thus, the starting point for a new template pack is typically an existing <em>Helm</em> chart that packages
-the technology of choice for execution on a <code class="docutils literal notranslate"><span class="pre">K8s</span></code> cluster. Consider creating a chart from scratch only if an existing
-chart is not available. The process of creating a new <em>Helm</em> chart from scratch is
-described in <a class="reference external" href="https://docs.helm.sh/">Official Helm Documentation</a>.</p>
+<p>Creating new template packs for Nauta is greatly simplified by leveraging the relatively ubiquitous <em>Helm</em> chart format as the foundation.</p>
+<p>Thus, the starting point for a new template pack is typically an existing <em>Helm</em> chart that packages the technology of choice for execution on a <em>K8s</em> cluster. Consider creating a chart from scratch only if an existing chart <em>is not</em> available. The process of creating a new <em>Helm</em> chart from scratch is described in the <a class="reference external" href="https://docs.helm.sh/">Official Helm Documentation</a>.</p>
 </div>
 </div>
 <div class="section" id="a-template-pack-in-five-simple-steps">
 <h2>A Template Pack in Five Simple Steps<a class="headerlink" href="#a-template-pack-in-five-simple-steps" title="Permalink to this headline">¶</a></h2>
 <p>Once a <em>working</em> Helm chart is available, the process of adapting it for use as an Nauta template is as follows:</p>
 <ol>
-<li><p>Pick the pack’s name.</p>
-<p>The name should be unique and not conflict with any other packs available in the local <code class="docutils literal notranslate"><span class="pre">packs</span></code> folder.
-After naming the pack, create a corresponding directory in the <code class="docutils literal notranslate"><span class="pre">packs</span></code> folder and populate
-its charts subfolder with the contents of the chart. Do not forget to set this pack name also in the chart.yaml file.
-Otherwise the new template won’t work.</p>
+<li><p>Name the Pack.</p>
+<p>The name should be unique <em>and not</em> conflict with any other packs available in the local packs folder. After naming the pack, create a corresponding directory in the packs folder and populate its <code class="docutils literal notranslate"><span class="pre">charts</span></code> subfolder with the contents of the chart. <em>Do not</em> forget to set this pack name also in the chart.yaml file. Otherwise, the new template <em>will not</em> work.</p>
+<p>Instead of creating a completely new folder from scratch, you can also copy an existing one using the <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">template</span> <span class="pre">copy</span></code> command and modify its content according to your needs.</p>
 </li>
-<li><p>Create/modify a Dockerfile.</p>
-<p>This Dockerfile will be used to
-build the image that will host the experiment’s scripts. As such, it
+<li><p>Create a Dockerfile.</p>
+<p>This Dockerfile will be used to build the image that will host the experiment’s scripts. As such, it
 should include all libraries and other dependencies that experiments based on this pack will use at runtime.</p>
 </li>
-<li><p>Update values.yaml (or create it if it does not exist)</p>
-<p>The following items that must be placed in the chart’s
-<code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file in order to enable proper experiment tracking:</p>
-<ul class="simple">
+<li><p>Update values.yaml (or create it if it <em>does not</em> exist).</p>
+<p>The following items that <em>must be</em> placed in the chart’s values.yaml file in order to enable proper experiment tracking:</p>
+<ul>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">podCount</span></code> element must be defined and initialized with the
 expected number of experiment pods that must enter the
 <em>Running</em> state in order for Nauta to consider the experiment
 as started.</p></li>
-<li><p>If the experiment script to be used with the pack accepts any
-command-line arguments, then a <code class="docutils literal notranslate"><span class="pre">commandline</span></code> parameter must be
-specified and assigned the value of
-<code class="docutils literal notranslate"><span class="pre">NAUTA.CommandLine</span></code> placeholder. This
-will allow the commandline parameters specified in the <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span></code> command to be propagated to the relevant
+<li><p>If the experiment script to be used with the pack accepts any</p>
+<p>command-line arguments, then a <code class="docutils literal notranslate"><span class="pre">commandline</span></code> parameter <em>must be</em>
+specified and assigned the value of the <code class="docutils literal notranslate"><span class="pre">NAUTA.CommandLine</span></code> placeholder.
+This will allow the command line parameters specified in the `nctl</p>
+<p>experiment submit` command to be propagated to the relevant
 <em>Helm</em> chart elements (by referencing the ‘commandline’
-parameter specified in values.yaml)</p></li>
+parameter specified in values.yaml)</p>
+</li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">image</span></code> parameter must be specified and assigned the
-value of <code class="docutils literal notranslate"><span class="pre">NAUTA.ExperimentImage</span></code>. The actual
-name of this parameter does not matter as long as it is properly
-referenced wherever a container image for the experiment is
-specified within the chart templates.</p></li>
+value of <code class="docutils literal notranslate"><span class="pre">NAUTA.ExperimentImage</span></code>. The actual</p>
+<p>name of this parameter <em>does not</em> matter as long as it is properly referenced wherever a container image for the     experiment is specified within the chart templates.</p>
+</li>
 </ul>
 </li>
-<li><p>Add tracking labels</p>
+<li><p>Add tracking labels.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">podCount</span></code> element specified above indicates how many pods
 to expect within a normally functioning experiment based on this
-pack. The way Nauta identifies the pods that belong to particular
+pack. The way Nauta identifies the pods that belong to a particular
 experiment is based on specific labels that need to be assigned to
 each pod that should be included in the <code class="docutils literal notranslate"><span class="pre">podCount</span></code> number.
 The label in question is <code class="docutils literal notranslate"><span class="pre">runName</span></code> and it needs to be
@@ -369,10 +337,10 @@ placeholder).</p>
 accounted for in <code class="docutils literal notranslate"><span class="pre">podCount</span></code> and assigned the aforementioned
 label. Nauta only needs to track the pods for which the runtime state is
 representative of the overall experiment status. If, for instance,
-an experiment is composed of a “master” pod which in turn manages
+an experiment is composed of a <em>master</em> pod which in turn manages
 its fleet of worker pods, then its sufficient to set <code class="docutils literal notranslate"><span class="pre">podCount</span></code> to
-1 and only track the “master” as long as it’s state (<em>Pending</em>,
-<em>Running</em>, <em>Failed</em>, etc) is representative for the entire group.</p>
+1 and only track the <em>master</em> as long as its state (<em>PENDING</em>,
+<em>RUNNING</em>, <em>FAILED</em>, and so on.) is representative for the entire group.</p>
 </li>
 <li><p>Update container image references.</p>
 <p>All container image definitions with the <em>chart’s</em> templates that
@@ -383,20 +351,12 @@ in the <code class="docutils literal notranslate"><span class="pre">Dockerfile</
 </li>
 </ol>
 <div class="section" id="nauta-values-yaml-placeholders">
-<h3>NAUTA values.yaml placeholders<a class="headerlink" href="#nauta-values-yaml-placeholders" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>NAUTA values.yaml Placeholders<a class="headerlink" href="#nauta-values-yaml-placeholders" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="nauta-commandline">
-<h3><code class="docutils literal notranslate"><span class="pre">NAUTA.CommandLine</span></code><a class="headerlink" href="#nauta-commandline" title="Permalink to this headline">¶</a></h3>
-<p>The NAUTA.CommandLine placeholder, when placed within the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file, will be
-substituted for the list of command line parameters specified when
-submitting an experiment via <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span></code> command.</p>
-<p>To pass this list as the command line into one of the containers
-defined in the pack’s templates, it needs to be first assigned to a parameter
-within <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> This parameter then needs to be referenced
-within the chart’s templates just like any other <em>Helm</em> template
-parameter.</p>
-<p>The following example snippet shows the placeholder being used to
-initialize a parameter named <code class="docutils literal notranslate"><span class="pre">commandline</span></code>:</p>
+<h4>NAUTA.CommandLine<a class="headerlink" href="#nauta-commandline" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">NAUTA.CommandLine</span></code> placeholder, when placed within the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file, will be substituted for the list of command line parameters specified when submitting an experiment via <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span></code> command.</p>
+<p>To pass this list as the command line into one of the containers defined in the pack’s templates, it needs to be first assigned to a parameter within the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file. This parameter then needs to be referenced within the chart’s templates just like any other <em>Helm</em> template parameter.</p>
+<p>The following example snippet shows the placeholder being used to initialize a parameter named <code class="docutils literal notranslate"><span class="pre">commandline</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">commandline</span><span class="p">:</span>
       <span class="n">args</span><span class="p">:</span>
         <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">NAUTA</span><span class="o">.</span><span class="n">CommandLine</span> <span class="o">%</span><span class="p">}</span>
@@ -406,18 +366,12 @@ initialize a parameter named <code class="docutils literal notranslate"><span cl
 </div>
 </div>
 <div class="section" id="nauta-experimentimage">
-<h3><code class="docutils literal notranslate"><span class="pre">NAUTA.ExperimentImage</span></code><a class="headerlink" href="#nauta-experimentimage" title="Permalink to this headline">¶</a></h3>
-<p>The NAUTA.ExperimentImage placeholder carries the full reference to the docker image resulting
-from building the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> specified within the
-pack.</p>
-<p>During experiment submission, the image will be built by Docker
-and deposited in the NAUTA Docker Registry under the locator represented
-by this placeholder.</p>
-<p>Hence, the placeholder shall be used to initialize a template
-parameter within the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file, that will later be referenced
-within the chart’s templates to specify the experiment image.</p>
-<p>Below is a sample definition of a parameter within <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code>,
-followed by a sample reference to the image in pod template.</p>
+<h4>NAUTA.ExperimentImage<a class="headerlink" href="#nauta-experimentimage" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">NAUTA.ExperimentImage</span></code> placeholder carries the full reference to the Docker image resulting
+from building the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> specified within the pack.</p>
+<p>During experiment submission, the image will be built by Docker and deposited in the Nauta Docker Registry under the locator represented by this placeholder.</p>
+<p>Hence, the placeholder is used to initialize a template parameter within the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file, that will later be referenced within the chart’s templates to specify the experiment image.</p>
+<p>Below is a sample definition of a parameter within <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code>, followed by a sample reference to the image in pod template.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="o">&lt;</span><span class="n">values</span><span class="o">.</span><span class="n">yaml</span><span class="o">&gt;</span>
     <span class="n">image</span><span class="p">:</span> <span class="p">{{</span> <span class="n">NAUTA</span><span class="o">.</span><span class="n">ExperimentImage</span> <span class="p">}}</span>
     
@@ -427,6 +381,22 @@ followed by a sample reference to the image in pod template.</p>
       <span class="n">image</span><span class="p">:</span> <span class="s2">&quot;{{ .Values.image }}&quot;</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="template-pack-management">
+<h2>Template Pack Management<a class="headerlink" href="#template-pack-management" title="Permalink to this headline">¶</a></h2>
+<p>The Nauta <code class="docutils literal notranslate"><span class="pre">nctl</span></code> client is shipped with an initial set of template packs. This initial set is created from thee template packs that are stored in the <em>template zoo</em> folder when the build of a certain version of a <code class="docutils literal notranslate"><span class="pre">nctl</span></code> application is completed.</p>
+<div class="section" id="template-zoo-github">
+<h3>Template zoo Github<a class="headerlink" href="#template-zoo-github" title="Permalink to this headline">¶</a></h3>
+<p>Template zoo is a GitHub repository with template packs created by Intel and a community members for different purposes. Refer to the publicly available <a class="reference external" href="https://github.com/IntelAI/nauta-zoo">Nauta Template Zoo</a> for more information.</p>
+<p>The Nauta <code class="docutils literal notranslate"><span class="pre">nctl</span></code>command provides a special command: <a class="reference internal" href="template.html"><span class="doc">nctl template</span></a> that makes interaction with this <em>template zoo</em> much easier.</p>
+<p>This command provides the following options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code> - Lists templates available locally and remotely.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">install</span></code> - Installs locally a template that is remotely available. If a template pack with the same name exists locally, but in a version older than the one available remotely, the local version will be upgraded to the remote one.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">copy</span></code> - Makes a copy of a locally existing template pack. Such a copy might be then freely extended by a user.</p></li>
+</ul>
 </div>
 </div>
 <hr class="docutils" />

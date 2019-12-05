@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -166,15 +166,15 @@
 <h2>Launching TensorBoard from the Web UI<a class="headerlink" href="#launching-tensorboard-from-the-web-ui" title="Permalink to this headline">¶</a></h2>
 <p>To view the experiment’s results in TensorBoard, TensorBoard data <em>must be</em> written to a
 folder in the directory <code class="docutils literal notranslate"><span class="pre">/mnt/output/experiment.</span></code></p>
-<p>To launch TensorBoard from the web UI and view results for individual experiments, perform these steps:</p>
+<p>To launch TensorBoard from the web UI and view results for individual experiments, execute these steps:</p>
 <ol>
-<li><p>Open the web ui by executing this command:</p>
+<li><p>Open the web UI by executing this command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">launch</span> <span class="pre">webui</span></code></p>
 </li>
 <li><p>At the web UI, identify the experiment that you want to see displayed in TensorBoard. Click the check box to the
 left of the experiment name.</p></li>
 <li><p>With an experiment selected (checked), the <strong>LAUNCH TENSORBOARD</strong> button becomes active. Click <strong>LAUNCH TENSORBOARD</strong>.
-TensorBoard is launched with graphs showing the experiment’s results.</p></li>
+TensorBoard launches with graphs showing the experiment’s results.</p></li>
 </ol>
 <p>The following screen displays (this is an example only).</p>
 <p><img alt="../../_images/tensorboard.png" src="../../_images/tensorboard.png" /></p>
@@ -190,20 +190,20 @@ TensorBoard is launched with graphs showing the experiment’s results.</p></li>
 <span class="n">Press</span> <span class="n">Ctrl</span><span class="o">-</span><span class="n">C</span> <span class="n">key</span> <span class="n">to</span> <span class="n">close</span> <span class="n">a</span> <span class="n">port</span> <span class="n">forwarding</span> <span class="n">process</span><span class="o">...</span>
 </pre></div>
 </div>
-<p>This command launches a local browser. If the command was run with the –no-launch option, then you need to copy the returned URL into a web browser. TensorBoard is launched with graphs showing the experiment’s results (as shown above).</p>
+<p>This command will launch a local browser. If the command was run with the <code class="docutils literal notranslate"><span class="pre">--no-launch</span></code> option, then you need to copy the returned URL into a web browser. TensorBoard is launched with graphs showing the experiment’s results (as shown above).</p>
 <p>You can also launch TensorBoard and with the <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">view</span></code> command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">view</span> <span class="pre">-tensorboard</span> <span class="pre">&lt;experiment-name&gt;</span></code></p>
-<p>This command exposes a TensorBoard instance with data from the named experiment as above.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">view</span> <span class="pre">--tensorboard</span> <span class="pre">&lt;experiment-name&gt;</span></code></p>
+<p><strong>Note:</strong> This command exposes a TensorBoard instance with data from the named experiment shown above.</p>
 </div>
 </div>
 <div class="section" id="mnist-example">
 <h1>MNIST Example<a class="headerlink" href="#mnist-example" title="Permalink to this headline">¶</a></h1>
-<p>You can try out TensorBoard with MNIST classifier <code class="docutils literal notranslate"><span class="pre">mnist_tensorboard.py</span></code> from python examples. You can find it in `examples’ folder. Run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nctl</span> <span class="n">experiment</span> <span class="n">submit</span> <span class="o">-</span><span class="n">p</span> <span class="n">cpu</span> <span class="mi">1</span> <span class="o">-</span><span class="n">p</span> <span class="n">memory</span> <span class="mi">2</span><span class="n">Gi</span> <span class="n">examples</span><span class="o">/</span><span class="n">mnist_tensorboard</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">n</span> <span class="n">tb</span><span class="o">-</span><span class="n">example</span>
+<p>You can try out TensorBoard with MNIST classifier <code class="docutils literal notranslate"><span class="pre">mnist_tensorboard.py</span></code> from Python examples in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder. Run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nctl</span> <span class="n">experiment</span> <span class="n">submit</span> <span class="o">-</span><span class="n">p</span> <span class="n">cpu</span> <span class="mi">1</span> <span class="o">-</span><span class="n">p</span> <span class="n">memory</span> <span class="mi">8</span><span class="n">Gi</span> <span class="n">examples</span><span class="o">/</span><span class="n">mnist_tensorboard</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">n</span> <span class="n">tb</span><span class="o">-</span><span class="n">example</span>
 <span class="n">nctl</span> <span class="n">exp</span> <span class="n">view</span> <span class="o">-</span><span class="n">tb</span> <span class="n">tb</span><span class="o">-</span><span class="n">example</span>
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">mnist_tensorboard.py</span></code> requires at least 2Gi of memory.</p>
+<p><strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">mnist_tensorboard.py</span></code> requires at least 8Gi of memory.</p>
 <hr class="docutils" />
 <div class="section" id="return-to-start-of-document">
 <h2>Return to Start of Document<a class="headerlink" href="#return-to-start-of-document" title="Permalink to this headline">¶</a></h2>

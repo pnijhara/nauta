@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Exporting models &mdash; Nauta 1.1 documentation</title>
+  <title>Exporting Models &mdash; Nauta 1.1 documentation</title>
   
 
   
@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -136,7 +136,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Exporting models</li>
+      <li>Exporting Models</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -156,29 +156,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="exporting-models">
-<h1>Exporting models<a class="headerlink" href="#exporting-models" title="Permalink to this headline">¶</a></h1>
+<h1>Exporting Models<a class="headerlink" href="#exporting-models" title="Permalink to this headline">¶</a></h1>
 <p>The section discusses how to transform a model from one format to another using the <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">export</span></code> functionality.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#obtaining-a-model-for-exporting">Obtaining a model to be exported</a></p></li>
-<li><p><a class="reference external" href="#checking-a-list-of-available-exports-formats">Checking a list of available exports’ formats</a></p></li>
-<li><p><a class="reference external" href="#exporting-the-model-to-openvino-format">Exporting the model to openvino format</a></p></li>
+<li><p><a class="reference external" href="#obtaining-a-model-for-exporting">Obtaining a Model For Exporting</a></p></li>
+<li><p><a class="reference external" href="#checking-a-list-of-available-exports-formats">Checking a list of Available Exports’ Formats</a></p></li>
+<li><p><a class="reference external" href="#exporting-the-model-to-openvino-format">Exporting the model to OpenVINO format</a></p></li>
 </ul>
 <div class="section" id="obtaining-a-model-for-exporting">
 <h2>Obtaining a Model For Exporting<a class="headerlink" href="#obtaining-a-model-for-exporting" title="Permalink to this headline">¶</a></h2>
 <p>To use the flow for exporting models, select a model that will export to another format. To successfully do this, create
-a model using: <code class="docutils literal notranslate"><span class="pre">mnist_saved_model.py</span></code> example script, which is delivered together with <code class="docutils literal notranslate"><span class="pre">nctl</span></code> application. This script
-trains the model and then stores it in a shared folder. To generate the model, use the following command:</p>
+a model using the <code class="docutils literal notranslate"><span class="pre">mnist_saved_model.py</span></code> example script, which is delivered together with <code class="docutils literal notranslate"><span class="pre">nctl</span></code> application. This script
+trains the model and then stores it in a shared folder.</p>
+<p>To generate the model, use the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">exp</span> <span class="pre">submit</span> <span class="pre">examples/mnist_saved_model.py</span> <span class="pre">-sfl</span> <span class="pre">examples/</span> <span class="pre">-n</span> <span class="pre">generate-model</span> <span class="pre">--</span> <span class="pre">/mnt/output/experiment</span></code></p>
 <p>This command trains a model using TensorFlow framework and stores it in the <code class="docutils literal notranslate"><span class="pre">output/generate-model</span></code> shared folder. Passing
-to this command an <code class="docutils literal notranslate"><span class="pre">-sfl</span></code> option is required, as the <code class="docutils literal notranslate"><span class="pre">mnist_saved_model.py</span></code> script requires a presence of a
-<code class="docutils literal notranslate"><span class="pre">mnist_input_data.py</span></code> script which is located in a folder with examples in nctl distribution.</p>
-<p>To check whether the script has been created, mount locally the shared folder mentioned above and check if it contains
-the <code class="docutils literal notranslate"><span class="pre">One</span></code> subfolder (the script generates only <code class="docutils literal notranslate"><span class="pre">One</span></code> model, which is stored in a folder named as an ordinary number
+this  command the <code class="docutils literal notranslate"><span class="pre">-sfl</span></code> (<code class="docutils literal notranslate"><span class="pre">--script-folder-location</span></code>) option is required, as the <code class="docutils literal notranslate"><span class="pre">mnist_saved_model.py</span></code> script requires the presence of the <code class="docutils literal notranslate"><span class="pre">mnist_input_data.py</span></code> script. This script is located in a folder with examples in the nctl distribution.</p>
+<p>To check whether the script has been created, mount the locally shared folder (referenced above)  and check if it contains
+the <em>One</em> subfolder (the script generates only <em>One</em> model, which is stored in a folder named as an ordinary number
 of this model).</p>
 </div>
 <div class="section" id="checking-a-list-of-available-exports-formats">
 <h2>Checking a List of Available Exports’ Formats<a class="headerlink" href="#checking-a-list-of-available-exports-formats" title="Permalink to this headline">¶</a></h2>
-<p>To check what are the available exports’ formats use the following command:</p>
+<p>To check what are the available exports’ formats, execute the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">formats</span></code></p>
 <p>This command displays a list of formats, for example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Name</span>     <span class="o">|</span> <span class="n">Parameters</span> <span class="n">description</span>                                                       <span class="o">|</span>
@@ -191,22 +191,24 @@ of this model).</p>
 </div>
 </div>
 <div class="section" id="exporting-the-model-to-openvino-format">
-<h2>Exporting the Model to Openvino Format<a class="headerlink" href="#exporting-the-model-to-openvino-format" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">export</span> <span class="pre">formats</span></code> command shows, that you can export the model to <code class="docutils literal notranslate"><span class="pre">openvino</span></code> format. To do this use the
-<code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">export</span></code> command in the following format:</p>
+<h2>Exporting the Model to OpenVINO Format<a class="headerlink" href="#exporting-the-model-to-openvino-format" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">export</span> <span class="pre">formats</span></code> command shows that you can export the model to <code class="docutils literal notranslate"><span class="pre">openvino</span></code> format. Use the <code class="docutils literal notranslate"><span class="pre">model</span> <span class="pre">export</span></code> command in the following format to export the model.</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">&lt;model_location&gt;</span> <span class="pre">&lt;format&gt;</span> <span class="pre">--</span> <span class="pre">&lt;format_specific_parameters&gt;</span></code></p>
-<p>Where:</p>
+<p><em>Where:</em></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;model_location&gt;</span></code> - location of a model that is going to be exported</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code> - format of the exported model</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;format_specific_paramaters&gt;</span></code> -  the parameters required during the export process. Their number and format is dependent on the model and the chosen format.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;model_location&gt;</span></code> - This is the location of a model that is going to be exported.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;format&gt;</span></code> - This is the format of the exported model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;format_specific_paramaters&gt;</span></code> -  These are the parameters required during the export process. Their number and format is dependent on the model and the chosen format.</p></li>
 </ul>
-<p>To export the model created in the previous step, use the following command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">export</span> <span class="pre">/mnt/output/home/generate-model/1</span> <span class="pre">openvino</span> <span class="pre">--</span> <span class="pre">--input_shape</span> <span class="pre">[1,784]</span> <span class="pre">--input</span> <span class="pre">x</span> <span class="pre">--output</span> <span class="pre">y</span></code></p>
-<p>Parameters <code class="docutils literal notranslate"><span class="pre">input_shape</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> are required to perform a successful export to <code class="docutils literal notranslate"><span class="pre">openvino</span></code> format.</p>
+<p>To export the model created in the previous step, use the following command (scroll to the right to see full contents):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">nctl</span> <span class="n">model</span> <span class="n">export</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">output</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">generate</span><span class="o">-</span><span class="n">model</span><span class="o">/</span><span class="mi">1</span> <span class="n">openvino</span> <span class="o">--</span> <span class="o">--</span><span class="n">input_shape</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">784</span><span class="p">]</span> <span class="o">--</span><span class="nb">input</span> <span class="n">x</span> <span class="o">--</span><span class="n">output</span> <span class="n">y</span>
+ 
+</pre></div>
+</div>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">input_shape</span></code>, <code class="docutils literal notranslate"><span class="pre">input</span></code> and <code class="docutils literal notranslate"><span class="pre">output</span></code> are required to perform a successful export to <code class="docutils literal notranslate"><span class="pre">openvino</span></code> format.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">input_shape</span></code> - Describes the shape of the input vector of the exported model</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">output</span></code> - describe names of input and output vectors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input_shape</span></code> - Describes the shape of the input vector of the exported model.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>, <code class="docutils literal notranslate"><span class="pre">output</span></code> - Describes the names of input and output vectors.</p></li>
 </ul>
 <p>Successful execution of this command produces the following output:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Operation</span>     <span class="o">|</span> <span class="n">Start</span> <span class="n">date</span>           <span class="o">|</span> <span class="n">End</span> <span class="n">date</span>   <span class="o">|</span> <span class="n">Owner</span>     <span class="o">|</span> <span class="n">State</span>   <span class="o">|</span>
@@ -217,13 +219,12 @@ of this model).</p>
 </pre></div>
 </div>
 <p><strong>Note:</strong> The name of the operation is just an example, your naming may differ from the example.</p>
-<p>The duration of the export operation depends on a chosen format. To check status of the operation use the following command:</p>
+<p>The duration of the export operation depends on a chosen format. To check the status of the operation, use the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">status</span></code></p>
 <p>This command returns a list of export operations with their statuses. If an export operation is finished, its status
-is <code class="docutils literal notranslate"><span class="pre">Succeeded</span></code>. When this occurs, an exported model can be found in the output/openvino_1 shared folder.
+is <code class="docutils literal notranslate"><span class="pre">Succeeded</span></code>. When this occurs, an exported model can be found in the <code class="docutils literal notranslate"><span class="pre">output/openvino_1</span></code> shared folder.
 This folder contains the following files: <code class="docutils literal notranslate"><span class="pre">saved_model.bin</span></code>, <code class="docutils literal notranslate"><span class="pre">saved_model.mapping</span></code> and <code class="docutils literal notranslate"><span class="pre">saved_model.xml</span></code>.</p>
-<p>If export operation issues occur, details of those issues can be found in logs from an export. To review the logs and
-issues, use the following command:</p>
+<p>If you export the operation and issues occur, details of those issues can be found in the logs from an export. To review the logs and issues, use the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">model</span> <span class="pre">logs</span> <span class="pre">openvino_1</span></code></p>
 </div>
 <hr class="docutils" />

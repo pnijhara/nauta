@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -157,18 +157,18 @@
             
   <div class="section" id="view-all-user-activity">
 <h1>View All User Activity<a class="headerlink" href="#view-all-user-activity" title="Permalink to this headline">¶</a></h1>
-<p>The command <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">user</span> <span class="pre">list</span></code> displays all current users and all of their experiments (with status). Furthermore, the command shows the following information:</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">user</span> <span class="pre">list</span></code> command to display all the current users, as well as all of their experiments (with status). Furthermore, the command displays the following information:</p>
 <ul class="simple">
 <li><p><strong>Name:</strong> user name</p></li>
 <li><p><strong>Creation date:</strong> the date this user account was created</p></li>
 <li><p><strong>Date of last submitted job:</strong> experiment</p></li>
 <li><p><strong>Number of running jobs:</strong> experiments</p></li>
-<li><p><strong>Number of queued jobs:</strong> experiments submitted but not yet running</p></li>
+<li><p><strong>Number of queued jobs:</strong> experiments submitted, but not yet running</p></li>
 </ul>
-<p>Administrators <em>are not</em> listed and previously deleted users are not shown. To <em>create</em> a user account, refer to <a class="reference internal" href="create_user.html"><span class="doc">Creating a User Account</span></a> and to <em>delete</em> a user account, refer to <a class="reference internal" href="delete_user.html"><span class="doc">Deleting a User Account</span></a>.</p>
-<p>Enter the following command:</p>
+<p>Administrators <em>are not</em> listed and previously deleted users <em>are not</em> shown. To <em>create</em> a user account, refer to <a class="reference internal" href="create_user.html"><span class="doc">Creating a User Account</span></a> and to <em>delete</em> a user account, refer to <a class="reference internal" href="delete_user.html"><span class="doc">Deleting a User Account</span></a>.</p>
+<p>Execute the following command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">user</span> <span class="pre">list</span></code></p>
-<p>Example results are show below (scroll right to see full contents).</p>
+<p>Example results are shown below (scroll right to see the full contents).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 <span class="o">|</span> <span class="n">Name</span>    <span class="o">|</span> <span class="n">Creation</span> <span class="n">date</span>          <span class="o">|</span> <span class="n">Date</span> <span class="n">of</span> <span class="n">last</span> <span class="n">submitted</span> <span class="n">job</span>   <span class="o">|</span>   <span class="n">Number</span> <span class="n">of</span> <span class="n">running</span> <span class="n">jobs</span> <span class="o">|</span>   <span class="n">Number</span> <span class="n">of</span> <span class="n">queued</span> <span class="n">jobs</span> <span class="o">|</span>
 <span class="o">|---------+------------------------+------------------------------+--------------------------+-------------------------|</span>

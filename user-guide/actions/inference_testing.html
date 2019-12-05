@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -157,13 +157,17 @@
             
   <div class="section" id="evaluating-experiments-with-inference-testing">
 <h1>Evaluating Experiments with Inference Testing<a class="headerlink" href="#evaluating-experiments-with-inference-testing" title="Permalink to this headline">¶</a></h1>
-<p>For guidance on using inference testing to evaluate an experiment, refer to the topics shown below.</p>
+<p>Nauta provides you with the ability to test your trained model using TensorFlow Serving and OpenVINO Model Server (OVMS).  OVMS is an OpenVINO serving component intended to provide hosting for the OpenVINO inference runtime.</p>
+<p>For guidance on using <em>Inference Testing</em> to evaluate an experiment, refer to the topics shown below.</p>
 <ul class="simple">
-<li><p>For <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">predict</span></code> command and its subcommands and parameters, refer to <a class="reference internal" href="predict.html"><span class="doc">predict Commands</span></a>.</p></li>
-<li><p>For a demonstration of how to run batch inference, refer to: <a class="reference internal" href="batch_inf_example.html"><span class="doc">Batch Inference Example</span></a>.</p></li>
-<li><p>For a demonstration of how to run streaming inference, refer to: <a class="reference internal" href="streaming_inference.html"><span class="doc">Stream Inference Example</span></a>.</p></li>
-<li><p>For running prediction on OpenVINO Model Server, refer to <a class="reference internal" href="openvino_inf.html"><span class="doc">Inference Example on OpenVINO Model Server</span></a></p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">predict</span></code> command, its subcommands, and parameter information, refer to <a class="reference internal" href="predict.html"><span class="doc">predict Commands</span></a>.</p></li>
 </ul>
+<p>For How-to instructions for TensorFlow Serving:</p>
+<ul class="simple">
+<li><p>Refer to <a class="reference internal" href="batch_inf_example.html"><span class="doc">Batch Inference Example</span></a> for running batch inference.</p></li>
+<li><p>Refer to <a class="reference internal" href="streaming_inference.html"><span class="doc">Stream Inference Example</span></a> for running streaming inference.</p></li>
+</ul>
+<p>To run prediction on OpenVINO Model Server, refer to <a class="reference internal" href="openvino_inf.html"><span class="doc">Inference Example on OpenVINO Model Server</span></a></p>
 <hr class="docutils" />
 <div class="section" id="return-to-start-of-document">
 <h2>Return to Start of Document<a class="headerlink" href="#return-to-start-of-document" title="Permalink to this headline">¶</a></h2>

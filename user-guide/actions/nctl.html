@@ -86,7 +86,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">Product Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide">Nauta User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html#nauta-user-guide-purpose">Nauta User Guide Purpose</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html">Nauta Installation, Configuration, and Administration Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-hardware-requirement-overview">Nauta Hardware Requirement Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation-and-configuration/README.html#nauta-installation-procedures">Nauta Installation Procedures</a></li>
@@ -157,8 +157,17 @@
             
   <div class="section" id="how-to-build-the-nauta-command-line-interface">
 <h1>How to Build the Nauta Command Line Interface<a class="headerlink" href="#how-to-build-the-nauta-command-line-interface" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="build-requirements">
-<h2>Build Requirements<a class="headerlink" href="#build-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Should you decide to build the Nauta Command Line Interface (nctl), then reference this section to build the CLI for Nauta. This section discusses the following main topics:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="#ubuntu-requirements">Ubuntu Requirements</a></p></li>
+<li><p><a class="reference external" href="#macos-high-sierra-or-later-requirements">MacOS High Sierra Requirements</a></p></li>
+</ul>
+<div class="section" id="nauta-development-requirements">
+<h2>Nauta Development Requirements<a class="headerlink" href="#nauta-development-requirements" title="Permalink to this headline">¶</a></h2>
+<p>The following Operating System (Ubuntu and macOS) are required to build the Nauta CLI.</p>
+</div>
+<div class="section" id="ubuntu-requirements">
+<h2>Ubuntu Requirements<a class="headerlink" href="#ubuntu-requirements" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="ubuntu-16-04-lts-and-ubuntu-18-04-lts">
 <h3>Ubuntu 16.04 LTS and Ubuntu 18.04 LTS<a class="headerlink" href="#ubuntu-16-04-lts-and-ubuntu-18-04-lts" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -188,6 +197,17 @@
 <li><p>curl</p></li>
 <li><p>git</p></li>
 </ul>
+</div>
+<div class="section" id="windows-10-requirements">
+<h2>Windows 10 Requirements<a class="headerlink" href="#windows-10-requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/ftp/python/3.6.5/python-3.6.5-amd64.exe">Python 3.6.5 64-bit</a></p></li>
+<li><p><a class="reference external" href="http://gnuwin32.sourceforge.net/packages/make.htm">make</a></p></li>
+<li><p><a class="reference external" href="https://www.7-zip.org/">7-zip</a></p></li>
+<li><p><a class="reference external" href="https://eternallybored.org/misc/wget/">wget</a></p></li>
+<li><p><a class="reference external" href="http://www.msys2.org/">MSYS2</a></p></li>
+</ul>
+<p>Ensure that you have these tools available system-wide via command-line (add them to PATH).</p>
 <div class="section" id="proxy-settings">
 <h3>Proxy Settings<a class="headerlink" href="#proxy-settings" title="Permalink to this headline">¶</a></h3>
 <p>Make sure you have the following settings: http_proxy, https_proxy, and no_proxy environment variables if you are behind proxy. The no_proxy must include: 127.0.0.1 and localhost.</p>
@@ -197,8 +217,8 @@
 <h2>Building nctl<a class="headerlink" href="#building-nctl" title="Permalink to this headline">¶</a></h2>
 <p>Make sure the development requirements above are met. In the applications/cli directory run: make build. As a result, artifacts are available in <code class="docutils literal notranslate"><span class="pre">dist</span></code> directory, including <code class="docutils literal notranslate"><span class="pre">nctl</span></code> binary.</p>
 <p>Should you need to rebuild nctl after any changes, you can invoke <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span> <span class="pre">build</span></code> (it cleans only the dist and build directories) or trigger <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">full_clean</span> <span class="pre">build</span></code> to recreate also <em>.venv</em> directory.</p>
-<p>If you want to create <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> package with nctl, invoke <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">nctl-build</span></code> from main directory in the repository.
-After a successful build, the tar.gz file can be found in applications/cli directory. The Package contains the nctl binary and all dependencies, such as Helm, docs, and example directories.</p>
+<p>If you want to create <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> package with nctl, invoke <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">nctl-build</span></code> from main directory in the repository.</p>
+<p>After successful build, the <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> file can be found in <code class="docutils literal notranslate"><span class="pre">applications/cli</span></code> directory. The Package contains the nctl binary and all dependencies, such as Helm. Also, docs and examples directories will be available.</p>
 <div class="section" id="available-make-commands-and-targets">
 <h3>Available make Commands and Targets<a class="headerlink" href="#available-make-commands-and-targets" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> - Removes build artifacts only</p>
