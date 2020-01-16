@@ -294,22 +294,22 @@
 <div class="section" id="single-node-training">
 <h4>Single Node Training<a class="headerlink" href="#single-node-training" title="Permalink to this headline">¶</a></h4>
 <p>For single node training (template parameter in this case is optional), use the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">-t</span>&#160; <span class="pre">tf-training-single</span> <span class="pre">examples/mnist_single_node.py</span> <span class="pre">--name</span> <span class="pre">single</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">--template</span>&#160; <span class="pre">tf-training-single</span> <span class="pre">examples/mnist_single_node.py</span> <span class="pre">--name</span> <span class="pre">single</span></code></p>
 </div>
 <div class="section" id="multinode-training">
 <h4>Multinode Training<a class="headerlink" href="#multinode-training" title="Permalink to this headline">¶</a></h4>
 <p>For multinode training, use the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">-t</span> <span class="pre">multinode-</span> <span class="pre">tf-training-single</span> <span class="pre">examples/mnist_multinode.py</span> <span class="pre">--name</span> <span class="pre">multinode</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">--template</span> <span class="pre">tf-training-multi</span> <span class="pre">examples/mnist_multinode.py</span> <span class="pre">--name</span> <span class="pre">multinode</span></code></p>
 </div>
 <div class="section" id="horovod-training">
 <h4>Horovod Training<a class="headerlink" href="#horovod-training" title="Permalink to this headline">¶</a></h4>
 <p>For Horovod training, use the following:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">-t</span> <span class="pre">tf-training-horovod</span> <span class="pre">examples/mnist_horovod.py</span> <span class="pre">--name</span> <span class="pre">horovod</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">--template</span> <span class="pre">tf-training-horovod</span> <span class="pre">examples/mnist_horovod.py</span> <span class="pre">--name</span> <span class="pre">horovod</span></code></p>
 <p>The included example scripts <em>do not</em> require an external data source. The scripts automatically download the MNIST dataset. Templates referenced here have set CPU and Memory requirements. The list of available templates can be obtained by issuing <code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">template-list</span></code> command.</p>
 <p><strong>Note:</strong> To run TensorBoard, TensorBoard data <em>must be</em> written to a folder in the directory <code class="docutils literal notranslate"><span class="pre">/mnt/output/experiment</span></code>. This example script satisfies this requirement; however, your scripts <em>must</em> meet the same requirement.</p>
 <p>The following example shows how to submit a MNIST experiment and write the TensorBoard data to a folder in your Nauta output folder.</p>
 <p>Enter the following command to run this example:</p>
-<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">-t</span> <span class="pre">tf-training-single</span> <span class="pre">examples/mnist_single_node.py</span> <span class="pre">--name</span> <span class="pre">single</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">nctl</span> <span class="pre">experiment</span> <span class="pre">submit</span> <span class="pre">--template</span> <span class="pre">tf-training-single</span> <span class="pre">examples/mnist_single_node.py</span> <span class="pre">--name</span> <span class="pre">single</span></code></p>
 </div>
 <div class="section" id="result-of-this-command">
 <h4>Result of this Command<a class="headerlink" href="#result-of-this-command" title="Permalink to this headline">¶</a></h4>
